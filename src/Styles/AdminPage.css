@@ -1,0 +1,15 @@
+.admindash{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  
+}
+.admindash .card{
+    margin-left: 80px;
+}
+.admindash .card-body{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+}
