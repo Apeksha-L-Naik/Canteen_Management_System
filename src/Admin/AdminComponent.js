@@ -27,6 +27,7 @@ const Admin = () => {
     formData.append('name', name);
     formData.append('available', available);
     formData.append('category', category);
+    formData.append('price', price);
     formData.append('image', image);
 
     try {
@@ -68,6 +69,13 @@ const Admin = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
+         <input
+          type="number"
+          placeholder="Price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+        />
         <input
           type="checkbox"
           checked={available}
@@ -90,6 +98,7 @@ const Admin = () => {
           <li key={item._id}>
             <h2>{item.name}</h2>
             <img src={`http://localhost:5000/${item.image}`} alt={item.name} width="200" />
+            <p>Price: ${item.price}</p>
             <label>
               <input
                 type="checkbox"
