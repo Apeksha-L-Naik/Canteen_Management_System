@@ -1,114 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AdminComponent = () => {
+const Admin = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const [currentItem, setCurrentItem] = useState("");
-  const [currentImage, setCurrentImage] = useState(null); // Change from "" to null
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [updateIndex, setUpdateIndex] = useState(null);
+  const [name, setName] = useState('');
+  const [available, setAvailable] = useState(true);
+  const [category, setCategory] = useState('breakfast'); // Default category
+  const [image, setImage] = useState(null);
+
+  const fetchMenuItems = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/menu');
+      setMenuItems(response.data);
+    } catch (error) {
+      console.error('Error fetching menu items:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/menu');
-        setMenuItems(response.data);
-      } catch (error) {
-        console.error('Error fetching menu items:', error);
-        alert('Error fetching menu items');
-      }
-    };
-    fetchMenu();
+    fetchMenuItems();
   }, []);
 
-  const handleInputChange = (event) => {
-    setCurrentItem(event.target.value);
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setCurrentImage(file);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
-    formData.append('item', currentItem);
-    if (currentImage) {
-      formData.append('image', currentImage);
-    }
+    formData.append('name', name);
+    formData.append('available', available);
+    formData.append('category', category);
+    formData.append('image', image);
 
     try {
-      const method = isUpdate ? 'put' : 'post';
-      const url = isUpdate ? `http://localhost:8080/api/menu/${updateIndex}` : 'http://localhost:8080/api/menu';
-
-      await axios({
-        method: method,
-        url: url,
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' }
+      const response = await axios.post('http://localhost:5000/api/menu', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-
-      alert(`Menu item ${isUpdate ? 'updated' : 'added'} successfully!`);
-      setCurrentItem("");
-      setCurrentImage(null); // Reset currentImage
-      setIsUpdate(false);
-      setUpdateIndex(null);
-
-      const response = await axios.get('http://localhost:8080/api/menu');
-      setMenuItems(response.data);
+      console.log(response.data);
+      fetchMenuItems(); // Refresh the list of menu items
     } catch (error) {
-      alert(`Error ${isUpdate ? 'updating' : 'adding'} menu item`);
+      console.error('Error submitting form:', error);
     }
   };
 
-  const handleOutOfStock = async (id) => {
+  const toggleAvailability = async (id, currentAvailability) => {
     try {
-      await axios.put(`http://localhost:8080/api/menu/out-of-stock/${id}`);
-      alert('Menu item marked as out of stock!');
-      const response = await axios.get('http://localhost:8080/api/menu');
-      setMenuItems(response.data);
+      const response = await axios.put(`http://localhost:5000/api/menu/${id}`, {
+        available: !currentAvailability,
+      });
+      console.log(response.data);
+      setMenuItems((prevItems) =>
+        prevItems.map((item) =>
+          item._id === id ? { ...item, available: !currentAvailability } : item
+        )
+      ); // Update state locally to reflect changes
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error marking menu item as out of stock');
+      console.error('Error updating availability:', error);
     }
-  };
-
-  const handleUpdateClick = (index) => {
-    setCurrentItem(menuItems[index].item);
-    setCurrentImage(menuItems[index].image);
-    setIsUpdate(true);
-    setUpdateIndex(menuItems[index]._id);
   };
 
   return (
     <div>
-      <h1>Admin Dashboard</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={currentItem}
-          onChange={handleInputChange}
-          placeholder="Enter menu item"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
         <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        {currentImage && typeof currentImage === 'string' && (
-          <img src={currentImage} alt="Preview" style={{ width: "100px", height: "100px" }} />
-        )}
-        <button type="submit">{isUpdate ? 'Update' : 'Add'} Menu Item</button>
+          type="checkbox"
+          checked={available}
+          onChange={(e) => setAvailable(e.target.checked)}
+        />{' '}
+        Available
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="breakfast">Breakfast</option>
+          <option value="fastfood">Fast Food</option>
+          <option value="dessert">Dessert</option>
+          <option value="beverage">Beverages</option>
+          <option value="nonveg">Non-Veg</option>
+          {/* Add other categories as needed */}
+        </select>
+        <input type="file" onChange={(e) => setImage(e.target.files[0])} required />
+        <button type="submit">Add Menu Item</button>
       </form>
-      <h2>Menu Items</h2>
       <ul>
-        {menuItems.map((menuItem, index) => (
-          <li key={index}>
-            {menuItem.item} - {menuItem.avail ? "Available" : "Out of Stock"}
-            <img src={`http://localhost:8080${menuItem.image}`} alt={menuItem.item} style={{ width: "100px", height: "100px" }} />
-            <button onClick={() => handleUpdateClick(index)}>Update</button>
-            <button onClick={() => handleOutOfStock(menuItem._id)}>Mark as Out of Stock</button>
+        {menuItems.map((item) => (
+          <li key={item._id}>
+            <h2>{item.name}</h2>
+            <img src={`http://localhost:5000/${item.image}`} alt={item.name} width="200" />
+            <label>
+              <input
+                type="checkbox"
+                checked={item.available}
+                onChange={() => toggleAvailability(item._id, item.available)}
+              />
+              Available
+            </label>
+            <p>Category: {item.category}</p>
           </li>
         ))}
       </ul>
@@ -116,4 +106,4 @@ const AdminComponent = () => {
   );
 };
 
-export default AdminComponent;
+export default Admin;

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
 import Caurosal from './Caurosal';
 import '../Styles/MenuItem.css' // Import your CSS file for styles
 
 const MenuItem = () => {
   const [selectedMenu, setSelectedMenu] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleViewMenu = (menu) => {
     setSelectedMenu(menu);
@@ -14,6 +17,21 @@ const MenuItem = () => {
   const handleBack = () => {
     setSelectedMenu(null);
   };
+   const handleBreakfast=()=>{
+    navigate('/breakfast');
+   }
+   const handleFastfood=()=>{
+    navigate('/fastfood');
+   }
+   const handleDessert=()=>{
+    navigate('/dessert');
+   }
+   const handleBeverage=()=>{
+    navigate('/beverage');
+   }
+   const handleNonveg=()=>{
+    navigate('/nonveg')
+   }
 
   return (
     <div>
@@ -36,7 +54,7 @@ const MenuItem = () => {
               <div className="card-footer text-center">
                 <button
                   className="btn btn-view"
-                  onClick={() => handleViewMenu('Breakfast')}
+                  onClick={handleBreakfast}
                 >
                   View Menu
                 </button>
@@ -57,7 +75,7 @@ const MenuItem = () => {
               <div className="card-footer text-center">
                 <button
                   className="btn btn-view"
-                  onClick={() => handleViewMenu('Fast Food')}
+                  onClick={handleFastfood}
                 >
                   View Menu
                 </button>
@@ -78,7 +96,7 @@ const MenuItem = () => {
               <div className="card-footer text-center">
                 <button
                   className="btn btn-view"
-                  onClick={() => handleViewMenu('Dessert')}
+                  onClick={handleDessert}
                 >
                   View Menu
                 </button>
@@ -99,7 +117,7 @@ const MenuItem = () => {
               <div className="card-footer text-center">
                 <button
                   className="btn btn-view"
-                  onClick={() => handleViewMenu('Beverages')}
+                  onClick={handleBeverage}
                 >
                   View Menu
                 </button>
@@ -120,7 +138,7 @@ const MenuItem = () => {
               <div className="card-footer text-center">
                 <button
                   className="btn btn-view"
-                  onClick={() => handleViewMenu('NonVeg')}
+                  onClick={handleNonveg}
                 >
                   View Menu
                 </button>
