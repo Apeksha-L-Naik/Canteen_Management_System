@@ -53,7 +53,7 @@ function Home() {
       `}</style>
       <Container fluid className="main-section text-center text-black d-flex align-items-center justify-content-center">
         <div className="overlay-content">
-        <h1 className="largest-text gradient-text">HEAVEN'S FOOD</h1>
+        <h1 className="largest-text gradient-text" style={{fontWeight:'bolder'}}>HEAVEN'S FOOD</h1>
           <h2 className="larger-text">Eat Tasty Dish Everyday</h2>
           <h2 className="larger-text">Share Your Love About Food</h2>
           <Button

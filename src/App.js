@@ -19,6 +19,7 @@ import OrderSummary from './Components/OrderSummary';
 import OrderSuccessful from './Components/OrderSuccessful';
 import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn';
+import FeedBack from './Components/FeedBack';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path='/adminlogin' element={<AdminLogin/>}/>
         <Route path="/MenuItem" element={<MenuItem/>}/>
+        <Route path='/feedback' element={<FeedBack/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/adminpage' element={<AdminPage/>}/>
         <Route path='/admincomp' element={<AdminComponent/>}/>

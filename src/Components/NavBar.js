@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
 import logo from '../Images/logo.png';
 
 export default function NavBar() {
@@ -37,6 +38,9 @@ export default function NavBar() {
                 <NavDropdown.Item href="#action/3.1" onClick={handleAdminClick}>Admin</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2" onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
+              <LinkContainer to="/feedback">
+                <Nav.Link>Feedback</Nav.Link>
+              </LinkContainer>
             </Nav>
             <Button 
             onClick={handleOrderButton}

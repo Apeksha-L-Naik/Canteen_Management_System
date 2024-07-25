@@ -62,9 +62,9 @@ function AdminLogin() {
           <Form.Label>Password</Form.Label>
           <Form.Control className="control" type="password" placeholder="Password" />
         </Form.Group>
-        <div className="signup-link">
+        {/* <div className="signup-link">
             Don't have an account? <Link to="/signup">Sign Up</Link>
-          </div>
+          </div> */}
           <Button variant="danger" type="submit" className="mt-4" style={{ width: '100px', display: 'block', margin: '0 auto' }}>
             <Link to="/Home" style={{color:'white',textDecoration:'None',fontWeight:'bold'}}>Sign In</Link>
             </Button>
