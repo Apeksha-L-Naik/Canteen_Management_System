@@ -48,7 +48,7 @@ const SignIn = () => {
     padding: '20px',
     backgroundColor: 'rgba(255, 255, 255, 0.9)', // Slightly transparent white background
     borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   };
 
   return (
