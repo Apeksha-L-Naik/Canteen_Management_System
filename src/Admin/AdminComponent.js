@@ -6,6 +6,7 @@ const Admin = () => {
   const [name, setName] = useState('');
   const [available, setAvailable] = useState(true);
   const [category, setCategory] = useState('breakfast'); // Default category
+  const [price, setPrice] = useState(''); 
   const [image, setImage] = useState(null);
 
   const fetchMenuItems = async () => {
@@ -27,8 +28,12 @@ const Admin = () => {
     formData.append('name', name);
     formData.append('available', available);
     formData.append('category', category);
-    formData.append('price', price);
+    formData.append('price', price); 
     formData.append('image', image);
+
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
 
     try {
       const response = await axios.post('http://localhost:5000/api/menu', formData, {
@@ -59,55 +64,97 @@ const Admin = () => {
     }
   };
 
+  const deleteMenuItem = async (id) => {
+    console.log('Deleting menu item with ID:', id);
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/menu/${id}`);
+      console.log(response.data);
+      setMenuItems((prevItems) => prevItems.filter((item) => item._id !== id));
+    } catch (error) {
+      console.error('Error deleting menu item:', error.response ? error.response.data : error.message);
+    }
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-         <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-        <input
-          type="checkbox"
-          checked={available}
-          onChange={(e) => setAvailable(e.target.checked)}
-        />{' '}
-        Available
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="breakfast">Breakfast</option>
-          <option value="fastfood">Fast Food</option>
-          <option value="dessert">Dessert</option>
-          <option value="beverage">Beverages</option>
-          <option value="nonveg">Non-Veg</option>
-          {/* Add other categories as needed */}
-        </select>
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} required />
-        <button type="submit">Add Menu Item</button>
+    <div style={{ padding: '20px' }}>
+      <div style={{ padding: '20px' }}>
+        <h2>Food Category</h2>
+      </div>
+      <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: '20px', display: 'flex', justifyContent: 'space-evenly' }}>
+        <div>
+          <input
+            type="text"
+            id='text'
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            id='number'
+            placeholder="Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id='checkbox'
+            checked={available}
+            onChange={(e) => setAvailable(e.target.checked)}
+          />{' '}
+          Available
+        </div>
+        <div>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="breakfast">Breakfast</option>
+            <option value="fastfood">Fast Food</option>
+            <option value="dessert">Dessert</option>
+            <option value="beverage">Beverages</option>
+            <option value="nonveg">Non-Veg</option>
+            <option value="chats">Chats</option>
+          </select>
+        </div>
+        <div>
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} required />
+          <button type="submit">Add Menu Item</button>
+        </div>
       </form>
-      <ul>
+      <ul style={{ listStyle: 'none' }}>
         {menuItems.map((item) => (
           <li key={item._id}>
-            <h2>{item.name}</h2>
-            <img src={`http://localhost:5000/${item.image}`} alt={item.name} width="200" />
-            <p>Price: ${item.price}</p>
-            <label>
-              <input
-                type="checkbox"
-                checked={item.available}
-                onChange={() => toggleAvailability(item._id, item.available)}
-              />
-              Available
-            </label>
-            <p>Category: {item.category}</p>
+            <div style={{ display: 'flex', borderBottom: '1px solid black', padding: '20px', alignItems: 'center', justifyContent: 'space-evenly' }}>
+              <div>
+                <img src={`http://localhost:5000/${item.image}`} alt={item.name} width="200" />
+              </div>
+              <div>
+                <h2>{item.name}</h2>
+              </div>
+              <div>
+                <p>Price: Rs.{item.price}</p>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={item.available}
+                    onChange={() => toggleAvailability(item._id, item.available)}
+                  />
+                  Available
+                </label>
+              </div>
+              <div>
+                <p>Category: {item.category}</p>
+              </div>
+              <div>
+                <button onClick={() => deleteMenuItem(item._id)}>Delete</button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>

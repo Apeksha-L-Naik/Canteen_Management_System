@@ -17,10 +17,10 @@ const AdminPage = () => {
   return (
     <>
     <NavBar/>
-    <div>
-      <h2>Admin Dashboard</h2>
+    <div style={{paddingTop:'100px'}}>
+      <h2 style={{marginLeft:'200px'}}>Admin Dashboard</h2>
     </div>
-    <div className='admindash'>
+    <div className='admindash' style={{marginLeft:'80px'}}>
         <div className='style'>
         <div className='card' style={{height:'100px',width:'20rem'}}>
         <div className="card-body text-center justify-content-center ">

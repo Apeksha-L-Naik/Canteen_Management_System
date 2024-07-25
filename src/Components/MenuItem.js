@@ -32,10 +32,13 @@ const MenuItem = () => {
    const handleNonveg=()=>{
     navigate('/nonveg')
    }
+   const handleChats=()=>{
+    navigate('/chats')
+   }
 
   return (
     <div>
-      <NavBar />
+      <NavBar  />
       <Caurosal />
       <div className="container-menu mt-5" style={{ height: '100px', width: '80rem', paddingLeft: '230px', paddingRight: '10px' }}>
       <h1>Popular Items</h1>
@@ -159,7 +162,7 @@ const MenuItem = () => {
               <div className="card-footer text-center">
                 <button
                   className="btn btn-view"
-                  onClick={() => handleViewMenu('Chats')}
+                  onClick={handleChats}
                 >
                   View Menu
                 </button>

@@ -13,6 +13,10 @@ import FastFood from './Components/FastFood';
 import Dessert from './Components/Dessert';
 import Beverages from './Components/Beverages';
 import Nonveg from './Components/Nonveg';
+import Cart from './Components/Cart';
+import Chats from './Components/Chats';
+import OrderSummary from './Components/OrderSummary';
+import OrderSuccessful from './Components/OrderSuccessful';
 
 function App() {
   return (
@@ -24,6 +28,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path='/adminlogin' element={<AdminLogin/>}/>
         <Route path="/MenuItem" element={<MenuItem/>}/>
+        <Route path='/cart' element={<Cart/>}/>
         <Route path='/adminpage' element={<AdminPage/>}/>
         <Route path='/admincomp' element={<AdminComponent/>}/>
         <Route path='/breakfast' element={<Breakfast/>}/>
@@ -31,6 +36,9 @@ function App() {
         <Route path='/dessert' element={<Dessert/>}/>
         <Route path='/beverage' element={<Beverages/>}/>
         <Route path='/nonveg' element={<Nonveg/>}/>
+        <Route path='/chats' element={<Chats/>}/>
+        <Route path='/ordersummary' element={<OrderSummary/>}/>
+        <Route path='/order-successful' element={<OrderSuccessful/>}/>
       </Routes>
     </Router>
     </>

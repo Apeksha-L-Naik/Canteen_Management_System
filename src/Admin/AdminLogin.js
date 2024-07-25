@@ -19,8 +19,8 @@ function AdminLogin() {
   
    <>
     <NavBar/>
-    <section className="form-container">
-      <h1>Admin</h1>
+    <section className="form-container" >
+      <h1 style={{paddingTop:'100px'}}>Admin</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicname">
           <Form.Label>Name</Form.Label>

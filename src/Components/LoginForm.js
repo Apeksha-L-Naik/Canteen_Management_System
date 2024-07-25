@@ -20,7 +20,7 @@ function LoginForm() {
    <>
     <NavBar/>
     <section className="form-container">
-      <h1>Login</h1>
+      <h1 style={{paddingTop:'100px'}}>Login</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicname">
           <Form.Label>Name</Form.Label>

@@ -4,23 +4,23 @@ import Cart from './Cart';
 import Caurosal from './Caurosal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Breakfast = () => {
-  const [breakfastItems, setBreakfastItems] = useState([]);
+const Chats = () => {
+  const [chatsItems, setChatsItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const fetchBreakfastItems = async () => {
+    const fetchChatsItems = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/menu');
-        const breakfastItems = response.data.filter(item => item.category === 'breakfast');
-        setBreakfastItems(breakfastItems);
+        const chatsItems = response.data.filter(item => item.category === 'chats');
+        setChatsItems(chatsItems);
       } catch (error) {
         console.error('Error fetching breakfast items:', error);
       }
     };
 
-    fetchBreakfastItems();
+    fetchChatsItems();
   }, []);
 
   const addToCart = (item) => {
@@ -64,9 +64,9 @@ const Breakfast = () => {
           <Cart cart={cart} total={total} addToCart={addToCart} removeFromCart={removeFromCart} />
         </div>
         <div className="col-md-8">
-          <h1 style={{ marginLeft: '0px' }}>Breakfast Menu</h1>
+          <h1 style={{ marginLeft: '0px' }}>Chats Menu</h1>
           <ul style={{ margin: '0px 100px 0px 0px', listStyle: 'none' }}>
-            {breakfastItems.map((item) => (
+            {chatsItems.map((item) => (
               <li key={item._id} style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -106,4 +106,4 @@ const Breakfast = () => {
   );
 };
 
-export default Breakfast;
+export default Chats;
