@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components/LoginForm';
-import SignupForm from './Components/SignupForm';
+
 import Home from './Components/Home';
 import AdminLogin from './Admin/AdminLogin';
 import MenuItem from './Components/MenuItem';
@@ -17,15 +17,18 @@ import Cart from './Components/Cart';
 import Chats from './Components/Chats';
 import OrderSummary from './Components/OrderSummary';
 import OrderSuccessful from './Components/OrderSuccessful';
+import SignUp from './Components/SignUp';
+import SignIn from './Components/SignIn';
 
 function App() {
   return (
     <>
    <Router>
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<SignIn/>} />
         <Route path="/home" element={<Home />} />
-        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/SignIn" element={<SignIn />} />
         <Route path='/adminlogin' element={<AdminLogin/>}/>
         <Route path="/MenuItem" element={<MenuItem/>}/>
         <Route path='/cart' element={<Cart/>}/>
