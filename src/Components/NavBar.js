@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import '../Images/logo.png';
+import logo from '../Images/logo.png';
 
 export default function NavBar() {
         const navigate = useNavigate();
@@ -28,8 +28,7 @@ export default function NavBar() {
     <>
       <Navbar bg='danger' variant='dark' fixed="top">
         <Container>
-          <Navbar.Brand href="#home" style={{ fontFamily: "Bebas Neue",fontWeight:'bolder',fontSize:'22px'}}>FOOD HAVEN</Navbar.Brand>
-          {/* <img src={logo} alt="Logo" style={{ height: '40px', marginLeft: '10px' }}/> */}
+          <img src={logo} alt="Logo" style={{ height: '50px', marginLeft: '0px' ,width:'120px'}}/>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
             <Nav className="me-auto">
