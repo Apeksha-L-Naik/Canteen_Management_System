@@ -1,14 +1,13 @@
 import React from 'react';
 import NavBar from '../Components/NavBar';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/AdminPage.css'
 
 
 const AdminPage = () => {
   const navigate = useNavigate();
 
-  const HandleMenu = (event) => {
-    event.preventDefault(); // Prevent default form submission
+  const HandleMenu = () => {
     navigate('/admincomp');
   };
   return (
@@ -33,7 +32,7 @@ const AdminPage = () => {
         </div>
         <div className='card' style={{height:'100px',width:'20rem'}}>
         <div className="card-body text-center justify-content-center ">
-                <h5 className="card-title">Total Order</h5>
+                <h5 className="card-title" >Total Order</h5>
               </div>
         </div>
     </div>

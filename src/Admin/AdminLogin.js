@@ -14,6 +14,10 @@ function AdminLogin() {
     // For demo purposes, navigate to the home page on submit
     navigate('/adminpage');
   };
+  const handleAdmin=()=>{
+    navigate('/adminpage');
+  };
+ 
   const backgroundStyle = {
     position: 'relative',
     height: '100vh',
@@ -65,8 +69,10 @@ function AdminLogin() {
         {/* <div className="signup-link">
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </div> */}
-          <Button variant="danger" type="submit" className="mt-4" style={{ width: '100px', display: 'block', margin: '0 auto' }}>
-            <Link to="/Home" style={{color:'white',textDecoration:'None',fontWeight:'bold'}}>Sign In</Link>
+          <Button 
+          onClick={handleAdmin}
+          variant="danger" type="submit" className="mt-4" style={{ width: '100px', display: 'block', margin: '0 auto' }}>
+            <Link  style={{color:'white',textDecoration:'None',fontWeight:'bold'}}>Sign In</Link>
             </Button>
 
       </Form>

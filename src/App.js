@@ -20,6 +20,7 @@ import OrderSuccessful from './Components/OrderSuccessful';
 import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn';
 import FeedBack from './Components/FeedBack';
+import Order from './Admin/Order';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path='/chats' element={<Chats/>}/>
         <Route path='/ordersummary' element={<OrderSummary/>}/>
         <Route path='/order-successful' element={<OrderSuccessful/>}/>
+        <Route path='/totalorder' element={<Order/>}/>
       </Routes>
     </Router>
     </>
