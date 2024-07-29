@@ -13,6 +13,6 @@ ReactBootstrap
 
 vs code
 
-![]("C:\Users\Linga\OneDrive\Pictures\Screenshots\Screenshot 2024-07-29 204625.png")
+![]("E:\4 sem\canteen\food_court\Images\Screenshot 2024-07-29 204625.png")
 
 ![]("C:\Users\Linga\OneDrive\Pictures\Screenshots\Screenshot 2024-07-29 204822.png")
