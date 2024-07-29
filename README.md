@@ -15,4 +15,4 @@ vs code
 
 ![](https://github.com/Apeksha-L-Naik/Canteen_Management_System/blob/main/Images/Screenshot%202024-07-29%20204625.png)
 
-![]("C:\Users\Linga\OneDrive\Pictures\Screenshots\Screenshot 2024-07-29 204822.png")
+![](https://github.com/Apeksha-L-Naik/Canteen_Management_System/blob/main/Images/Screenshot%202024-07-29%20204822.png)
