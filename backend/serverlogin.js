@@ -14,7 +14,7 @@ const JWT_SECRET = 'your_jwt_secret'; // Replace with a secure key
 
 // MongoDB connection
 
-const DB = 'mongodb+srv://kshama:Kshamas%40123%40@cluster0.gkja9da.mongodb.net/'; // Ensure this is correctly formatted
+const DB = mongodb_url // Ensure this is correctly formatted
 mongoose.connect(DB)
   .then(() => {
     console.log('Database connected..');
